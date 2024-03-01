@@ -4,11 +4,13 @@ import { FaGithub } from 'react-icons/fa'
 
 export const Navbar = () => {
   return (
-    <nav className='bg-secondary'>
+    <nav className='bg-secondary shadow shadow-black/50'>
       <Wrapper>
         <div className='flex items-center justify-between'>
           <div>
-            <span className='text-2xl text-primary tracking-wide'>Walagraf</span>
+            <span className='text-2xl text-primary tracking-wide'>
+              Walagraf
+            </span>
           </div>
           <div className='flex items-center gap-6'>
             <a
@@ -23,8 +25,8 @@ export const Navbar = () => {
               </div>
             </a>
 
-            <Link to='/dashboard' className='hover:text-primary px-2 py-1'>
-              DASHBOARD
+            <Link to='/accounts' className='hover:text-primary px-2 py-1'>
+              ACCOUNTS
             </Link>
             <Link to='/auth/login' className='hover:text-primary px-2 py-1'>
               LOGIN

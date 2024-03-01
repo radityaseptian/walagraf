@@ -22,6 +22,12 @@ export default withMT({
         secondary: '#343a40',
         red: '#dd3f4c',
       },
+      backgroundImage: {
+        whatsapp:
+          "url('https://cdn.pixabay.com/photo/2021/05/24/17/07/whatsapp-6279868_1280.png')",
+        telegram:
+          "url('https://cdn.pixabay.com/photo/2021/05/24/17/07/whatsapp-6279868_1280.png')",
+      },
     },
   },
   plugins: [],

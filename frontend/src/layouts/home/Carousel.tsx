@@ -1,8 +1,8 @@
 import { Wrapper } from '@/components'
 import Slider from 'infinite-react-carousel'
 import { GrSync, GrSecure } from 'react-icons/gr'
-import { BsLightningFill, BsTagFill } from 'react-icons/bs'
-import { FaUserGroup, FaKeyboard } from 'react-icons/fa6'
+import { BsLightningFill, BsTagFill, BsQrCode } from 'react-icons/bs'
+import { FaUserGroup } from 'react-icons/fa6'
 import { RiOpenSourceFill } from 'react-icons/ri'
 
 const className = 'w-12 h-12 text-primary'
@@ -40,7 +40,7 @@ const contents = [
     desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. laudantium necessitatibus vel',
   },
   {
-    icon: <FaKeyboard className={className} />,
+    icon: <BsQrCode className={className} />,
     title: 'Easy To Use',
     desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. laudantium necessitatibus vel',
   },
@@ -83,7 +83,7 @@ interface BoxProps {
 
 const Box: React.FC<BoxProps> = (props) => {
   return (
-    <div className='bg-secondary mx-4 p-6 rounded-sm text-center'>
+    <div className='bg-secondary mx-2 p-6 rounded-sm text-center'>
       <div className='flex justify-center'>{props.children}</div>
       <div className='py-4 text-lg text-white'>{props.title}</div>
       <span>{props.decription}</span>
