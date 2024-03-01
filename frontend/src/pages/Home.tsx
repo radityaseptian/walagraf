@@ -6,6 +6,7 @@ import {
   ComingSoon,
   Pricing,
   FreeTrial,
+  Footer,
 } from '@/layouts'
 import { Section } from '@/components'
 
@@ -19,6 +20,7 @@ export const Home = () => {
       <ComingSoon />
       <Pricing />
       <FreeTrial />
+      <Footer />
     </div>
   )
 }
