@@ -16,7 +16,7 @@ const Accounts = () => {
       <Navbar />
       <Routes>
         <Route
-          path='whatsapp'
+          path='whatsapp/*'
           element={
             <Suspense fallback={<Loading />}>
               <Whatsapp />
@@ -24,7 +24,7 @@ const Accounts = () => {
           }
         />
         <Route
-          path='telegram'
+          path='telegram/*'
           element={
             <Suspense fallback={<Loading />}>
               <Telegram />
