@@ -1,24 +1,12 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const Auth = () => {
   const [input, setInput] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
   const { pathname } = useLocation()
   const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   axios
-  //     .get(url + '/admin/status', { withCredentials: true, validateStatus: () => true })
-  //     .then(({ data }) => {
-  //       if (data.success) {
-  //         setAdmin(data.data)
-  //         return navigate('/dash/chat', { replace: true })
-  //       }
-  //     })
-  //     .catch(() => {})
-  // }, [])
 
   const url = import.meta.env.VITE_URL
   const namepath = pathname.slice(1, pathname.length)
