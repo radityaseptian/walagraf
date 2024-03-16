@@ -1,16 +1,20 @@
 import { Browsers } from '@whiskeysockets/baileys'
-import logger from 'pino'
+import pino from 'pino'
 
 export const config = {
   fromUser: null,
   id: null,
   userId: null,
   clientParams: {
-    defaultQueryTimeoutMs: undefined,
-    printQRInTerminal: false,
     logger: pino({ level: 'silent' }),
     browser: Browsers.ubuntu('Chrome'),
-    generateHighQualityLinkPreview: true,
-    receivedPendingNotifications: true,
+    printQRInTerminal: false,
+    generateHighQualityLinkPreview: false,
+    defaultQueryTimeoutMs: 10000,
+    keepAliveIntervalMs: 60000,
+    retryRequestDelayMs: 10000,
+    maxMsgRetryCount: 10000,
+    markOnlineOnConnect: true,
+    syncFullHistory: true,
   },
 }
