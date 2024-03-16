@@ -10,13 +10,6 @@ const options = { prettyPrint: true }
 const appLogger = pino(options, pino.destination(folder + 'app.log'))
 const telegramLogger = pino(options, pino.destination(folder + 'telegram.log'))
 const whatsappLogger = pino(options, pino.destination(folder + 'whatsapp.log'))
-const loginLogger = pino(options, pino.destination(folder + 'login.log'))
-const registerLogger = pino(options, pino.destination(folder + 'register.log'))
+const authLogger = pino(options, pino.destination(folder + 'auth.log'))
 
-export {
-  appLogger,
-  telegramLogger,
-  whatsappLogger,
-  loginLogger,
-  registerLogger,
-}
+export { appLogger, telegramLogger, whatsappLogger, authLogger }

@@ -2,7 +2,7 @@ import mongoose from '../mongodb.js'
 
 const model = new mongoose.Schema({
   id: { type: String, require: true, unique: true },
-  fromUser: { type: String, require: true },
+  userId: { type: String, require: true },
   type: { type: String, require: true },
   name: { type: String, require: true, default: null },
   username: { type: String, require: true, default: 'unknown' },
@@ -11,6 +11,6 @@ const model = new mongoose.Schema({
   lastOnline: { type: Number, require: true, default: Date.now },
 })
 
-model.index({ fromUser: 1 })
+model.index({ id: 1 })
 
-export const Account = mongoose.model('account', model)
+export const Instance = mongoose.model('instance', model)

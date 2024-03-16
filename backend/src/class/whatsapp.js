@@ -8,12 +8,16 @@ import config from '../config/whatsapp.js'
 export default class Instance {
   _config = config
   client = {}
-  qr = null
 
-  constructor(fromUser, id, userId) {
+  misc = { qr: null, isFirst: true, name: null }
+
+  constructor(fromUser, id, userId, isFirst = true, name = null) {
     this._config.fromUser = fromUser
     this._config.id = id
     this._config.userId = userId
+
+    this.misc.isFirst = isFirst
+    this.misc.name = name
   }
 
   sendEvent(event, data) {
@@ -28,8 +32,6 @@ export default class Instance {
     client.auth = auth
     this.client = client
     this.setHandler()
-
-    return client
   }
 
   async destroy() {
@@ -37,7 +39,7 @@ export default class Instance {
     this.client.ev?.removeAllListeners()
     this.client?.ws?.close()
     // delete instance in user !
-    Account.deleteOne({ id }).catch(() => {})
+    Instance.deleteOne({ id }).catch(() => {})
   }
 
   setHandler() {
@@ -49,7 +51,6 @@ export default class Instance {
     // on socket closed, opened, connecting
     client.ev?.on('connection.update', async (update) => {
       const { connection, lastDisconnect, qr } = update
-
       if (connection === 'connecting') return
 
       if (connection === 'close') {
@@ -60,16 +61,19 @@ export default class Instance {
         }
       }
 
-      if (connection === 'open') {
+      if (connection === 'open' && this.misc.isFirst) {
+        this.misc.isFirst = false
         const id = this._config.id
         try {
-          const { name, verifiedName, id: userId } = await this.getMe()
-          const username = name || verifiedName || 'unknown'
+          const { name: waName, verifiedName, id: userId } = await this.getMe()
+          const username = waName || verifiedName || 'unknown'
           this._config.userId = userId
 
-          const data = { userId, username, type: 'whatsapp', lastOnline: Date.now() }
+          const now = Date.now()
+          const date = { createdAt: now, lastOnline: now }
+          const data = { name: this.misc.name, userId, username, type: 'whatsapp', ...date }
 
-          await Account.updateOne({ id }, { $set: { ...data, session: id } })
+          await Instance.updateOne({ id }, { $set: { ...data, session: id } })
           this.sendEvent('connection', { ...data, status: 'success' })
         } catch (error) {
           this.sendEvent('connection', { status: 'failed', reason: error.message })
@@ -77,7 +81,7 @@ export default class Instance {
         }
       }
 
-      if (qr) qrCode.toDataURL(qr).then((url) => (this.qr = url))
+      if (qr && this.misc.isFirst) qrCode.toDataURL(qr).then((url) => (this.misc.qr = url))
     })
 
     // == CHAT

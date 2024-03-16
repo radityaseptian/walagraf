@@ -1,2 +1,2 @@
-export * from './account.js'
+export * from './instance.js'
 export * from './user.js'

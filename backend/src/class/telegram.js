@@ -3,7 +3,7 @@ import { CustomFile } from 'telegram/client/uploads.js'
 import { NewMessage } from 'telegram/events/index.js'
 import qrCode from 'qrcode'
 
-import { Account } from '../databases/models/index.js'
+import { Instance } from '../databases/models/index.js'
 import { config } from '../config/telegram.js'
 
 export default class Instance {
@@ -51,11 +51,9 @@ export default class Instance {
     client.addEventHandler(this.events.receiveMessage, new NewMessage())
     client.addEventHandler(this.events.customEvent)
     this.client = client
-
-    return client
   }
 
-  async getQr() {
+  async getQr(name) {
     const { apiId, apiHash, id } = this._config
     return await new Promise(async (resolve, reject) => {
       await this.client
@@ -75,13 +73,15 @@ export default class Instance {
             const session = this.client.session.save()
 
             const username = `${firstName} ${lastName ?? ''}`.trim()
-            const data = { userId, username, type: 'telegram', lastOnline: Date.now() }
+            const now = Date.now()
+            const date = { createdAt: now, lastOnline: now }
+            const data = { name, userId, username, type: 'telegram', ...date }
 
-            await Account.updateOne({ id }, { $set: { ...data, session } })
+            await Instance.updateOne({ id }, { $set: { ...data, session } })
             this.sendEvent('connection', { ...data, status: 'success' })
           } catch (error) {
             this.sendEvent('connection', { status: 'failed', reason: error.message })
-            Account.deleteOne({ id }).catch(() => {})
+            Instance.deleteOne({ id }).catch(() => {})
           }
         })
     })
