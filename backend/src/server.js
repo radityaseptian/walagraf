@@ -7,8 +7,8 @@ import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import 'dotenv/config'
 
-global.Whatsapp = {}
-global.Telegram = {}
+global.Whatsapps = {}
+global.Telegrams = {}
 
 const { PORT, ORIGIN } = process.env
 
