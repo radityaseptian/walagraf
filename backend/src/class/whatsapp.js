@@ -69,9 +69,8 @@ export default class Instance {
           const username = waName || verifiedName || 'unknown'
           this._config.userId = userId
 
-          const now = Date.now()
-          const date = { createdAt: now, lastOnline: now }
-          const data = { name: this.misc.name, userId, username, type: 'whatsapp', ...date }
+          const name = this.misc.name
+          const data = { name, userId, username, type: 'whatsapp', createdAt: Date.now() }
 
           await Instance.updateOne({ id }, { $set: { ...data, session: id } })
           this.sendEvent('connection', { ...data, status: 'success' })

@@ -1,23 +1,25 @@
 import { Routes as RoutesDom, Route, Navigate } from 'react-router-dom'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Home } from '@/pages/Home'
 import { Loading } from '@/components'
+import axios from 'axios'
+import { useUser } from './context'
 
-const Auth = lazy(() => import('./pages/Auth'))
 const Accounts = lazy(() => import('./pages/accounts'))
 
 const Routes = () => {
+  const [user, setUser] = useUser()
+  const url = import.meta.env.VITE_URL
+
+  useEffect(() => {
+    axios.get(url + '/user/status').then(({ data }) => {
+      if (data.success) setUser({ ...user, isLogin: true, ...data.data })
+    })
+  }, [])
+
   return (
     <RoutesDom>
       <Route path='/' element={<Home />} />
-      <Route
-        path='/auth/*'
-        element={
-          <Suspense fallback={<Loading />}>
-            <Auth />
-          </Suspense>
-        }
-      />
       <Route
         path='/accounts/*'
         element={

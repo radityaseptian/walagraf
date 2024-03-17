@@ -13,7 +13,7 @@ async function login(req, res) {
     const validate = await compare(password, user.password)
     if (!validate) return res.status(400).json({ success: false, message: 'Password not match!' })
 
-    const token = jwt.sign({ email: user.username }, process.env.KEY, { expiresIn: '30d' })
+    const token = jwt.sign({ email: user.email }, process.env.KEY, { expiresIn: '30d' })
     const options = { httpOnly: true, path: '/', maxAge: 30 * 24 * 60 * 60 * 1000 }
 
     res.cookie('token', token, options)

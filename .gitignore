@@ -12,6 +12,7 @@ frontend/dist
 frontend/.env
 backend/node_modules
 backend/.env
+backend/src/logs
 dist
 dist-ssr
 *.local

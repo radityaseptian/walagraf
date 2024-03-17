@@ -1,15 +1,14 @@
 import pino from 'pino'
 import fs from 'fs'
+import { join } from 'path'
 
-const logsDir = '../logs'
+const logsDir = join('src/logs')
 if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir)
 
-const folder = '../logs/'
-const options = { prettyPrint: true }
+const appLogger = pino(pino.destination(join(logsDir, 'app.log')))
+const socketLogger = pino(pino.destination(join(logsDir, 'socket.log')))
+const telegramLogger = pino(pino.destination(join(logsDir, 'telegram.log')))
+const whatsappLogger = pino(pino.destination(join(logsDir, 'whatsapp.log')))
+const authLogger = pino(pino.destination(join(logsDir, 'auth.log')))
 
-const appLogger = pino(options, pino.destination(folder + 'app.log'))
-const telegramLogger = pino(options, pino.destination(folder + 'telegram.log'))
-const whatsappLogger = pino(options, pino.destination(folder + 'whatsapp.log'))
-const authLogger = pino(options, pino.destination(folder + 'auth.log'))
-
-export { appLogger, telegramLogger, whatsappLogger, authLogger }
+export { appLogger, socketLogger, telegramLogger, whatsappLogger, authLogger }

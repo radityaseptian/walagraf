@@ -8,7 +8,6 @@ const model = new mongoose.Schema({
   username: { type: String, require: true, default: 'unknown' },
   session: { type: String, require: true, unique: true },
   createdAt: { type: Number, require: true, default: Date.now },
-  lastOnline: { type: Number, require: true, default: Date.now },
 })
 
 model.index({ id: 1 })

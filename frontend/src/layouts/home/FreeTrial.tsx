@@ -1,6 +1,17 @@
 import { Section } from '@/components'
+import { useForm, useUser } from '../../context'
+import { useNavigate } from 'react-router-dom'
 
 export const FreeTrial = () => {
+  const [, setForm] = useForm()
+  const [user] = useUser()
+  const navigate = useNavigate()
+
+  const handleStartedButton = () => {
+    if (!user?.isLogin) return setForm('login')
+    navigate('/accounts')
+  }
+
   return (
     <Section
       title='Free trial'
@@ -8,7 +19,10 @@ export const FreeTrial = () => {
       Look no further than Walagraf'
     >
       <div className='text-center'>
-        <button className='px-8 py-3 rounded text-secondary hover:text-white bg-red'>
+        <button
+          onClick={handleStartedButton}
+          className='px-8 py-3 rounded text-secondary hover:text-white bg-red'
+        >
           Get Started
         </button>
       </div>

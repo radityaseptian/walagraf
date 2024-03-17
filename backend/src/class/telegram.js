@@ -73,9 +73,7 @@ export default class Instance {
             const session = this.client.session.save()
 
             const username = `${firstName} ${lastName ?? ''}`.trim()
-            const now = Date.now()
-            const date = { createdAt: now, lastOnline: now }
-            const data = { name, userId, username, type: 'telegram', ...date }
+            const data = { name, userId, username, type: 'telegram', createdAt: Date.now() }
 
             await Instance.updateOne({ id }, { $set: { ...data, session } })
             this.sendEvent('connection', { ...data, status: 'success' })

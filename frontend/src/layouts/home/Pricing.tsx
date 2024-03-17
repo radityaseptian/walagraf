@@ -86,7 +86,7 @@ const SectionBox: React.FC<BoxProps> = (props) => {
           )
         })}
       </ul>
-      <button className='flex items-center gap-2 px-4 py-2 bg-red text-secondary hover:text-white rounded w-full justify-center font-semibold'>
+      <button className='flex items-center gap-2 cursor-not-allowed px-4 py-2 bg-red text-secondary hover:text-white rounded w-full justify-center font-semibold'>
         <span>GET IT</span>
         <MdArrowForwardIos />
       </button>
