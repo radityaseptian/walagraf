@@ -1,6 +1,6 @@
-import { User } from '../databases/models/index.js'
-import { unlinkSync } from 'fs'
-import { readFile } from 'fs/promises'
+const { User } = require('../databases/models/index.js')
+const { unlinkSync } = require('fs')
+const { readFile } = require('fs/promises')
 
 async function getMe(req, res) {
   const name = req.name
@@ -233,10 +233,7 @@ async function searchUser(req, res) {
   }
 }
 
-export {
-  init,
-  restore,
-  remove,
+module.exports = {
   getMe,
   sendMessage,
   getMessages,

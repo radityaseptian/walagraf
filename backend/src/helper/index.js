@@ -1,4 +1,6 @@
-export * from './downloadMsg.js'
-export * from './fileAuthState.js'
-export * from './genVc.js'
-export * from './jwtverify.js'
+const downloadMsg = require('./downloadMsg')
+const fileAuthState = require('./fileAuthState')
+const genVc = require('./genVc')
+const jwtverify = require('./jwtverify')
+
+module.exports = { downloadMsg, fileAuthState, genVc, jwtverify }

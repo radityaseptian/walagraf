@@ -1,5 +1,5 @@
-import { User } from '../databases/models/index.js'
-import { jwtVerify } from '../helper/jwtverify.js'
+const { User } = require('../databases/models/index.js')
+const { jwtVerify } = require('../helper/jwtverify.js')
 
 async function isAuthUser(req, res, next) {
   try {
@@ -24,4 +24,4 @@ async function isValidUser(req, res, next) {
   }
 }
 
-export { isAuthUser, isValidUser }
+module.exports = { isAuthUser, isValidUser }

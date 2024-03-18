@@ -1,13 +1,14 @@
-import express from 'express'
-import cors from 'cors'
-import { createServer } from 'http'
-import cookieParser from 'cookie-parser'
-import helmet from 'helmet'
-import 'dotenv/config'
+const express = require('express')
+const cors = require('cors')
+const { createServer } = require('http')
+const cookieParser = require('cookie-parser')
+const helmet = require('helmet')
+require('dotenv').config()
 
-import routes from './routes/index.js'
-import { initSocket } from './controllers/socket.js'
-import { corsOptions, port } from './config/app.js'
+const routes = require('./routes')
+const { initSocket } = require('./controllers/socket')
+const { corsOptions, port } = require('./config/app')
+const connectToMongoDB = require('./databases/mongodb')
 
 global.Whatsapps = {}
 global.Telegrams = {}
@@ -22,5 +23,6 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(routes)
 
+connectToMongoDB()
 initSocket(server)
 server.listen(port, () => console.log('Running in port ' + port))

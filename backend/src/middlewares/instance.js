@@ -8,4 +8,4 @@ async function isInstanceOnline(req, res, next) {
   }
 }
 
-export { isInstanceOnline }
+module.exports = { isInstanceOnline }

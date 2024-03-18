@@ -1,13 +1,13 @@
-import { TelegramClient, sessions, Api } from 'telegram'
-import { CustomFile } from 'telegram/client/uploads.js'
-import { NewMessage } from 'telegram/events/index.js'
-import qrCode from 'qrcode'
-import { schedule } from 'node-cron'
+const { TelegramClient, sessions, Api } = require('telegram')
+const { CustomFile } = require('telegram/client/uploads.js')
+const { NewMessage } = require('telegram/events')
+const qrCode = require('qrcode')
+const { schedule } = require('node-cron')
 
-import { Instance, User } from '../databases/models/index.js'
-import { config } from '../config/telegram.js'
+const { Instance, User } = require('../databases/models')
+const { config } = require('../config/telegram.js')
 
-export default class TelegramClass {
+module.exports = class TelegramClass {
   _config = config
   client = null
 

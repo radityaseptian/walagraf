@@ -1,7 +1,7 @@
-import { Router } from 'express'
-import user from './user.js'
-import * as instance from '../controllers/instance.js'
-import { isAuthUser, isValidUser } from '../middlewares/auth.js'
+const { Router } = require('express')
+const user = require('./user.js')
+const instance = require('../controllers/instance.js')
+const { isAuthUser, isValidUser } = require('../middlewares/auth.js')
 
 const router = Router()
 
@@ -12,4 +12,4 @@ router.post('/instance', instance.init)
 router.get('/instance', isValidUser, instance.restore)
 router.delete('/instance', isValidUser, instance.remove)
 
-export default router
+module.exports = router

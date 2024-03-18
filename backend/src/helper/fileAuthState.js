@@ -1,6 +1,6 @@
-import { initAuthCreds, BufferJSON, proto } from '@whiskeysockets/baileys'
-import { mkdir, readFile, stat, unlink, writeFile } from 'fs/promises'
-import { join } from 'path'
+const { initAuthCreds, BufferJSON, proto } = require('@whiskeysockets/baileys')
+const { mkdir, readFile, stat, unlink, writeFile } = require('fs/promises')
+const { join } = require('path')
 
 /**
  * stores the full authentication state in a single folder.
@@ -9,7 +9,7 @@ import { join } from 'path'
  * Again, I wouldn't endorse this for any production level use other than perhaps a bot.
  * Would recommend writing an auth state for use with a proper SQL or No-SQL DB
  * */
-export const useMultiFileAuthState = async (folder) => {
+module.exports = useMultiFileAuthState = async (folder) => {
   const writeData = (data, file) => {
     return writeFile(join(folder, fixFileName(file)), JSON.stringify(data, BufferJSON.replacer))
   }

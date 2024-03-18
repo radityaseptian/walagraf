@@ -1,4 +1,4 @@
-import mongoose from '../mongodb.js'
+const mongoose = require('mongoose')
 
 const model = new mongoose.Schema({
   email: { type: String, require: true, unique: true },
@@ -10,4 +10,6 @@ const model = new mongoose.Schema({
 
 model.index({ email: 1 })
 
-export const User = mongoose.model('user', model)
+const User = mongoose.model('user', model)
+
+module.exports = User

@@ -1,8 +1,8 @@
-import { User } from '../databases/models/index.js'
-import jwt from 'jsonwebtoken'
-import 'dotenv/config'
+const { User } = require('../databases/models/index.js')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
-export async function jwtVerify(token) {
+module.exports = async function jwtVerify(token) {
   try {
     if (!token) return false
     const { email } = jwt.verify(token, process.env.KEY)

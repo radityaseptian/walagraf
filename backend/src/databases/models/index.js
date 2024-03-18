@@ -1,2 +1,4 @@
-export * from './instance.js'
-export * from './user.js'
+const User = require('./user')
+const Instance = require('./instance')
+
+module.exports = { User, Instance }

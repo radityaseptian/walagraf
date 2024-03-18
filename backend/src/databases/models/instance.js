@@ -1,4 +1,4 @@
-import mongoose from '../mongodb.js'
+const mongoose = require('mongoose')
 
 const model = new mongoose.Schema({
   id: { type: String, require: true, unique: true },
@@ -12,4 +12,6 @@ const model = new mongoose.Schema({
 
 model.index({ id: 1 })
 
-export const Instance = mongoose.model('instance', model)
+const Instance = mongoose.model('instance', model)
+
+module.exports = Instance

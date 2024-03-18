@@ -1,6 +1,6 @@
-import { Router } from 'express'
-import * as user from '../controllers/user.js'
-import { isAuthUser } from '../middlewares/auth.js'
+const { Router } = require('express')
+const user = require('../controllers/user.js')
+const { isAuthUser } = require('../middlewares/auth.js')
 
 const router = Router()
 
@@ -9,4 +9,4 @@ router.post('/login', user.login)
 router.delete('/logout', user.logout)
 router.get('/status', isAuthUser, user.status)
 
-export default router
+module.exports = router

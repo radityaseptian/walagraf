@@ -1,12 +1,12 @@
-import makeWASocket, { DisconnectReason } from '@whiskeysockets/baileys'
-import { downloadMessage, useMultiFileAuthState } from '../helper/index.js'
-import { Instance, User } from '../databases/models/index.js'
-import qrCode from 'qrcode'
-import axios from 'axios'
-import config from '../config/whatsapp.js'
-import { schedule } from 'node-cron'
+const { default: makeWASocket, DisconnectReason } = require('@whiskeysockets/baileys')
+const { downloadMessage, useMultiFileAuthState } = require('../helper')
+const { Instance, User } = require('../databases/models')
+const qrCode = require('qrcode')
+const axios = require('axios')
+const config = require('../config/whatsapp.js')
+const { schedule } = require('node-cron')
 
-export default class WhatsAppClass {
+module.exports = class WhatsAppClass {
   _config = config
   client = {}
 

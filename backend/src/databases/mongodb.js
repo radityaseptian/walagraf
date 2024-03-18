@@ -1,9 +1,13 @@
-import mongoose from 'mongoose'
-import 'dotenv/config'
+const mongoose = require('mongoose')
+require('dotenv').config()
 
-await mongoose.connect(process.env.MONGO, { rejectUnauthorized: true }).catch((e) => {
-  console.error(e)
-  process.exit(1)
-})
+const connectToMongoDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO, { rejectUnauthorized: true })
+  } catch (error) {
+    console.error(error)
+    process.exit(1)
+  }
+}
 
-export default mongoose
+module.exports = connectToMongoDB

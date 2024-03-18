@@ -1,8 +1,8 @@
-import 'dotenv/config'
-import { Server } from 'socket.io'
-import { socketLogger } from '../config/logger.js'
-import { corsOptions } from '../config/app.js'
-import { jwtVerify } from '../helper/jwtverify.js'
+const { Server } = require('socket.io')
+const { socketLogger } = require('../config/logger.js')
+const { corsOptions } = require('../config/app.js')
+const { jwtVerify } = require('../helper/jwtverify.js')
+require('dotenv').config()
 
 let io
 
@@ -26,4 +26,4 @@ async function initSocket(server) {
 
 const getIo = () => io
 
-export { initSocket, getIo }
+module.exports = { initSocket, getIo }

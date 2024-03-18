@@ -1,7 +1,7 @@
-import { User } from '../databases/models/index.js'
-import jwt from 'jsonwebtoken'
-import { hash, compare } from 'bcrypt'
-import 'dotenv/config'
+const { User } = require('../databases/models/index.js')
+const jwt = require('jsonwebtoken')
+const { hash, compare } = require('bcrypt')
+require('dotenv').config()
 
 async function login(req, res) {
   const { email, password } = req.body
@@ -47,4 +47,4 @@ async function status(req, res) {
   res.json({ success: true, data: req.user })
 }
 
-export { login, register, logout, status }
+module.exports = { login, register, logout, status }

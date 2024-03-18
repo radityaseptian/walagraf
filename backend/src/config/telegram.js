@@ -1,8 +1,8 @@
-import 'dotenv/config'
+require('dotenv').config()
 
 const { APIID, APIHASH } = process.env
 
-export const config = {
+module.exports = {
   fromUser: null,
   id: null,
   userId: null,

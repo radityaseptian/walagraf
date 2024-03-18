@@ -1,4 +1,4 @@
-export function generateVC(data) {
+module.exports = function generateVC(data) {
   return (
     'BEGIN:VCARD\n' +
     'VERSION:3.0\n' +

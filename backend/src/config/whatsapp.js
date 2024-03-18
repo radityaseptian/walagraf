@@ -1,7 +1,7 @@
-import { Browsers } from '@whiskeysockets/baileys'
-import pino from 'pino'
+const { Browsers } = require('@whiskeysockets/baileys')
+const pino = require('pino')
 
-export const config = {
+module.exports = {
   fromUser: null,
   id: null,
   userId: null,

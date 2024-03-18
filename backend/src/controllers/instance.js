@@ -1,7 +1,7 @@
-import TelegramClass from '../class/telegram.js'
-import WhatsAppClass from '../class/whatsapp.js'
-import { User, Instance } from '../databases/models/index.js'
-import { v4 as uuid } from 'uuid'
+const TelegramClass = require('../class/telegram.js')
+const WhatsAppClass = require('../class/whatsapp.js')
+const { User, Instance } = require('../databases/models/index.js')
+const { v4: uuid } = require('uuid')
 
 async function init(req, res) {
   const { name = null, type } = req.body
@@ -73,4 +73,4 @@ async function remove(req, res) {
   // }
 }
 
-export { init, restore, remove }
+module.exports = { init, restore, remove }
