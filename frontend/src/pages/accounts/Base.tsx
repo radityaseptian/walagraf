@@ -114,7 +114,7 @@ const Base = () => {
                     </Typography>
                   </DialogHeader>
                   <DialogBody divider className='grid place-items-center gap-4'>
-                    <svg
+                      <svg
                       viewBox='0 0 40 40'
                       fill='none'
                       className='h-16 w-16'

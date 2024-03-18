@@ -19,7 +19,9 @@ async function sendMessage(req, res) {
 
   try {
     if (!username || !message) {
-      return res.status(400).json({ success: false, message: 'Cannot read property undefined username or message.' })
+      return res
+        .status(400)
+        .json({ success: false, message: 'Cannot read property undefined username or message.' })
     }
 
     const result = file
@@ -70,7 +72,9 @@ async function updateProfileInfo(req, res) {
   const name = req.name
   try {
     if (!firstName || !lastName) {
-      return res.status(400).json({ success: false, message: 'Cannot read property undefined firstname, lastname.' })
+      return res
+        .status(400)
+        .json({ success: false, message: 'Cannot read property undefined firstname, lastname.' })
     }
 
     const response = await instance.updateProfileInfo(firstName, lastName, about)
@@ -95,7 +99,10 @@ async function updateUsername(req, res) {
   const instance = req.instance
   const name = req.name
   try {
-    if (!username) return res.status(400).json({ success: false, message: 'Cannot read property undefined username' })
+    if (!username)
+      return res
+        .status(400)
+        .json({ success: false, message: 'Cannot read property undefined username' })
     const response = await instance.updateUsername(username)
 
     const data = { username: response.username }
@@ -112,7 +119,10 @@ async function updateProfileAvatar(req, res) {
   const name = req.name
   const file = req.file
   try {
-    if (!file) return res.status(400).json({ success: false, message: 'Cannot read property undefined file' })
+    if (!file)
+      return res
+        .status(400)
+        .json({ success: false, message: 'Cannot read property undefined file' })
     const { path, size, originalname } = file
     await instance.updateProfileAvatar(path, size, originalname)
 
@@ -214,7 +224,8 @@ async function searchUser(req, res) {
   const { q } = req.query
   const instance = req.instance
   try {
-    if (!q) return res.status(400).json({ success: false, message: 'Query params cannot be empty!' })
+    if (!q)
+      return res.status(400).json({ success: false, message: 'Query params cannot be empty!' })
     const result = await instance.searchGlobal(q)
     res.json({ success: true, data: result.users })
   } catch (error) {
@@ -223,6 +234,9 @@ async function searchUser(req, res) {
 }
 
 export {
+  init,
+  restore,
+  remove,
   getMe,
   sendMessage,
   getMessages,

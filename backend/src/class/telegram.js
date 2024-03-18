@@ -2,13 +2,16 @@ import { TelegramClient, sessions, Api } from 'telegram'
 import { CustomFile } from 'telegram/client/uploads.js'
 import { NewMessage } from 'telegram/events/index.js'
 import qrCode from 'qrcode'
+import { schedule } from 'node-cron'
 
-import { Instance } from '../databases/models/index.js'
+import { Instance, User } from '../databases/models/index.js'
 import { config } from '../config/telegram.js'
 
-export default class Instance {
+export default class TelegramClass {
   _config = config
   client = null
+
+  cronDestroy // if not connected 5 minutes will destroy connection
 
   constructor(fromUser, id, userId) {
     this._config.fromUser = fromUser
@@ -22,21 +25,23 @@ export default class Instance {
 
   events = {
     receiveMessage: async (event) => {
-      const message = event.message
-      const sender = (await message.getSender().catch(() => {})) || {}
-      console.log('event r', event)
-      console.log('sender r', sender)
-      this.sendEvent('conversation', { message, sender })
+      // const message = event.message
+      // const sender = (await message.getSender().catch(() => {})) || {}
+      // console.log('event r', event)
+      // console.log('sender r', sender)
+      // this.sendEvent('conversation', { message, sender })
     },
 
     customEvent: async (event) => {
-      if (event instanceof Api.UpdateNewMessage) {
-        const message = event.message
-        const sender = (await message.getSender().catch(() => {})) || {}
-        console.log('event u', event)
-        console.log('sender u', sender)
-        this.sendEvent('conversation', { message, sender })
-      }
+      console.log(event)
+
+      // if (event instanceof Api.UpdateNewMessage) {
+      //   const message = event.message
+      //   const sender = (await message.getSender().catch(() => {})) || {}
+      //   console.log('event u', event)
+      //   console.log('sender u', sender)
+      //   this.sendEvent('conversation', { message, sender })
+      // }
     },
   }
 
@@ -46,7 +51,12 @@ export default class Instance {
     const client = new TelegramClient(strSession, apiId, apiHash, clientParams)
 
     const conn = await client.connect()
-    if (!conn) throw new Error('Error connected to telegram')
+    if (!conn) {
+      this.destroy()
+      throw new Error('Error connected to telegram')
+    }
+
+    if (!session) this.cronDestroy = schedule('*/5 * * * *', () => this.destroy())
 
     client.addEventHandler(this.events.receiveMessage, new NewMessage())
     client.addEventHandler(this.events.customEvent)
@@ -54,7 +64,7 @@ export default class Instance {
   }
 
   async getQr(name) {
-    const { apiId, apiHash, id } = this._config
+    const { apiId, apiHash, id, fromUser } = this._config
     return await new Promise(async (resolve, reject) => {
       await this.client
         .signInUserWithQrCode(
@@ -68,25 +78,32 @@ export default class Instance {
         .then(async (res) => {
           try {
             const { firstName, lastName, id: userId } = res
-
             this._config.userId = userId
             const session = this.client.session.save()
 
-            const username = `${firstName} ${lastName ?? ''}`.trim()
-            const data = { name, userId, username, type: 'telegram', createdAt: Date.now() }
+            const username = `${firstName} ${lastName ?? ''}`.trim() || 'unknown'
+            const type = 'telegram'
+            const data = { id, name: `${name ? `(${name})` : ''} ${username}`.trim(), type }
 
-            await Instance.updateOne({ id }, { $set: { ...data, session } })
+            await new Instance({ ...data, userId, username, session, createdAt }).save()
+            await User.updateOne({ email: fromUser }, { $push: { instances: data } })
+
             this.sendEvent('connection', { ...data, status: 'success' })
           } catch (error) {
             this.sendEvent('connection', { status: 'failed', reason: error.message })
-            Instance.deleteOne({ id }).catch(() => {})
+          } finally {
+            this.cronDestroy?.stop()
           }
         })
     })
   }
 
   async destroy() {
-    return await this.client.destroy()
+    this.cronDestroy?.stop()
+    await this.client.destroy().catch(() => {})
+    const instances = { ...global.Telegrams }
+    delete instances[this._config.id]
+    global.Telegrams = instances
   }
 
   async markAsRead(chatId) {

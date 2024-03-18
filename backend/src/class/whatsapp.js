@@ -1,13 +1,16 @@
-import { makeWASocket, DisconnectReason } from '@whiskeysockets/baileys'
-import { downloadMessage, useMultiFileAuthState, generateVC } from '../helper/index.js'
-import { Account } from '../databases/models/index.js'
+import makeWASocket, { DisconnectReason } from '@whiskeysockets/baileys'
+import { downloadMessage, useMultiFileAuthState } from '../helper/index.js'
+import { Instance, User } from '../databases/models/index.js'
 import qrCode from 'qrcode'
 import axios from 'axios'
 import config from '../config/whatsapp.js'
+import { schedule } from 'node-cron'
 
-export default class Instance {
+export default class WhatsAppClass {
   _config = config
   client = {}
+
+  cronDestroy // if not connected 5 minutes will destroy connection
 
   misc = { qr: null, isFirst: true, name: null }
 
@@ -29,17 +32,21 @@ export default class Instance {
     this._config.clientParams.auth = auth.state
 
     const client = makeWASocket(this._config.clientParams)
+
+    if (this.misc.isFirst) this.cronDestroy = schedule('*/5 * * * *', () => this.destroy())
+
     client.auth = auth
     this.client = client
     this.setHandler()
   }
 
   async destroy() {
-    const { fromId, id } = this._config
     this.client.ev?.removeAllListeners()
     this.client?.ws?.close()
-    // delete instance in user !
-    Instance.deleteOne({ id }).catch(() => {})
+    this.cronDestroy?.stop()
+    const instances = { ...global.Whatsapps }
+    delete instances[this._config.id]
+    global.Whatsapps = instances
   }
 
   setHandler() {
@@ -54,25 +61,31 @@ export default class Instance {
       if (connection === 'connecting') return
 
       if (connection === 'close') {
+        const { id } = this._config
+
         if (lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) {
-          await this.start(this._config.id)
+          await this.start(id)
         } else {
-          console.log(this._config.id, 'pairing or banned')
+          console.log(id, 'pairing or banned')
+          this.destroy()
         }
       }
 
       if (connection === 'open' && this.misc.isFirst) {
         this.misc.isFirst = false
-        const id = this._config.id
+        const { id, fromUser } = this._config
         try {
           const { name: waName, verifiedName, id: userId } = await this.getMe()
           const username = waName || verifiedName || 'unknown'
           this._config.userId = userId
 
           const name = this.misc.name
-          const data = { name, userId, username, type: 'whatsapp', createdAt: Date.now() }
+          const type = 'whatsapp'
+          const data = { id, name: `${name ? `(${name})` : ''} ${username}`.trim(), type }
 
-          await Instance.updateOne({ id }, { $set: { ...data, session: id } })
+          await new Instance({ ...data, userId, username, session: id, createdAt }).save()
+          await User.updateOne({ email: fromUser }, { $push: { instances: data } })
+
           this.sendEvent('connection', { ...data, status: 'success' })
         } catch (error) {
           this.sendEvent('connection', { status: 'failed', reason: error.message })

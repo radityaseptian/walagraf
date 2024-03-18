@@ -26,6 +26,7 @@
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.3",
     "pino": "^8.19.0",
+    "qrcode": "^1.5.3",
     "socket.io": "^4.7.4",
     "telegram": "^2.19.20",
     "uuid": "^9.0.1"

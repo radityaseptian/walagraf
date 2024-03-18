@@ -6,7 +6,7 @@ import helmet from 'helmet'
 import 'dotenv/config'
 
 import routes from './routes/index.js'
-import { initSocket } from './socket/index.js'
+import { initSocket } from './controllers/socket.js'
 import { corsOptions, port } from './config/app.js'
 
 global.Whatsapps = {}
