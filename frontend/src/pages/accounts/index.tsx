@@ -15,9 +15,9 @@ const Accounts = () => {
   const [user] = useUser()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!user?.isLogin) navigate('/')
-  }, [])
+  // useEffect(() => {
+  //   if (!user?.isLogin) navigate('/')
+  // }, [])
 
   return (
     <div>

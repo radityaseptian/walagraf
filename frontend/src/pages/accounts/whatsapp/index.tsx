@@ -1,5 +1,7 @@
+import App from './src/App'
+
 const Whatsapp = () => {
-  return <div>Whatsapp</div>
+  return <App />
 }
 
 export default Whatsapp
