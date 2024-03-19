@@ -18,8 +18,8 @@ export default withMT({
       textColor: { primary: '#dd3f4c', secondary: '#cbd5e1' },
       borderColor: { primary: '#dd3f4c', secondary: '#cbd5e1' },
       backgroundColor: {
-        primary: '#222020',
-        secondary: '#343a40',
+        primary: '#1c1b1b',
+        secondary: '#2b2a2a',
         red: '#dd3f4c',
       },
     },

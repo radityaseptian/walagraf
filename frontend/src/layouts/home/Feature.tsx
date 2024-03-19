@@ -11,17 +11,16 @@ interface SectionBoxProps {
 
 const contents: Array<SectionBoxProps> = [
   {
-    title: ' Account Details:',
-    img: 'https://explorant.space/static/media/feature1.7d570606.png',
+    title: 'Account Details:',
+    img: '/img/tele.png',
     desc1:
       'Access and view your complete Valorant account information, including your username, rank, region, and in-game statistics. Stay informed about your progress and performance ',
-    desc2:
-      'Gain a comprehensive overview of your Valorant account, including your current rank and any account bans. Stay informed about your progress and performance, track your rank advancements, and take note of any penalties or restrictions imposed on your account.',
+    desc2: '',
     reverse: true,
   },
   {
-    title: ' Account Details:',
-    img: 'https://explorant.space/static/media/feature1.7d570606.png',
+    title: 'Conversations With Friends:',
+    img: '/img/conversation.png',
     desc1:
       'Access and view your complete Valorant account information, including your username, rank, region, and in-game statistics. Stay informed about your progress and performance ',
     desc2:
@@ -29,8 +28,8 @@ const contents: Array<SectionBoxProps> = [
     reverse: false,
   },
   {
-    title: ' Account Details:',
-    img: 'https://explorant.space/static/media/feature1.7d570606.png',
+    title: 'Manage Profile:',
+    img: '/img/profile.png',
     desc1:
       'Access and view your complete Valorant account information, including your username, rank, region, and in-game statistics. Stay informed about your progress and performance ',
     desc2:
@@ -38,8 +37,8 @@ const contents: Array<SectionBoxProps> = [
     reverse: true,
   },
   {
-    title: ' Account Details:',
-    img: 'https://explorant.space/static/media/feature1.7d570606.png',
+    title: 'Generate Stickers:',
+    img: '/img/sticker.png',
     desc1:
       'Access and view your complete Valorant account information, including your username, rank, region, and in-game statistics. Stay informed about your progress and performance ',
     desc2:
@@ -50,10 +49,7 @@ const contents: Array<SectionBoxProps> = [
 
 export const Feature = () => {
   return (
-    <Section
-      title='Features'
-      desc='Discover the Powerful Features of Explorant.'
-    >
+    <Section title='Features' desc='Discover the Powerful Features of Walagraf.'>
       <div className='space-y-12'>
         {contents.map((content, i) => {
           return (
@@ -76,8 +72,8 @@ const SectionBox: React.FC<SectionBoxProps> = (props) => {
   return (
     <div
       className={clsx(
-        'flex items-center gap-20',
-        props.reverse && 'flex-row-reverse'
+        'flex flex-col items-center gap-10 md:gap-14',
+        props.reverse ? 'md:flex-row' : 'md:flex-row-reverse'
       )}
     >
       <div className='flex-1 space-y-5'>
@@ -85,8 +81,8 @@ const SectionBox: React.FC<SectionBoxProps> = (props) => {
         <p>{props.desc1}</p>
         <p>{props.desc2}</p>
       </div>
-      <div className='w-1/2'>
-        <img src={props.img} alt='Image Description' />
+      <div className='md:w-1/2'>
+        <img src={props.img} loading='lazy' alt='Image Description' />
       </div>
     </div>
   )

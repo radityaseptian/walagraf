@@ -1,63 +1,58 @@
 import { Section } from '@/components'
-import { MdArrowForwardIos } from 'react-icons/md'
-import { IoCheckmarkCircleOutline } from 'react-icons/io5'
 
 interface BoxProps {
   title: string
-  img: string
+  icon: string
   desc: string
   features: String[]
 }
 
 const contents: Array<BoxProps> = [
   {
-    title: ' Account Details:',
-    img: 'https://docrdsfx76ssb.cloudfront.net/static/1709236601/pages/wp-content/uploads/2022/06/link-in-bio-1.svg',
-    desc: 'A comprehensive solution to help make every point of connection between your content and your audience more powerful',
+    title: 'Basic',
+    icon: '&#9829;',
+    desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium, mollitia impedit fugiat earum rerum natus illum culpa quod suscipit animi.',
     features: [
-      'URL shortening at scale',
-      'URL shortening at scale',
-      'URL shortening at scale',
-      'URL shortening at scale',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
     ],
   },
   {
-    title: ' Account Details:',
-    img: 'https://docrdsfx76ssb.cloudfront.net/static/1709236601/pages/wp-content/uploads/2022/06/link-in-bio-1.svg',
-    desc: 'A comprehensive solution to help make every point of connection between your content and your audience more powerful',
+    title: 'Standard',
+    icon: ' &#9733;',
+    desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium, mollitia impedit fugiat earum rerum natus illum culpa quod suscipit animi.',
     features: [
-      'URL shortening at scale',
-      'URL shortening at scale',
-      'URL shortening at scale',
-      'URL shortening at scale',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
     ],
   },
   {
-    title: ' Account Details:',
-    img: 'https://docrdsfx76ssb.cloudfront.net/static/1709236601/pages/wp-content/uploads/2022/06/link-in-bio-1.svg',
-    desc: 'A comprehensive solution to help make every point of connection between your content and your audience more powerful',
+    title: 'Premium',
+    icon: '&#10070;',
+    desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium, mollitia impedit fugiat earum rerum natus illum culpa quod suscipit animi.',
     features: [
-      'URL shortening at scale',
-      'URL shortening at scale',
-      'URL shortening at scale',
-      'URL shortening at scale',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit.',
     ],
   },
 ]
 
 export const Pricing = () => {
   return (
-    <Section
-      title='Pricing'
-      desc='Discover the Powerful Features of Explorant.'
-    >
-      <div className='flex items-center gap-6'>
+    <Section title='Pricing' desc='Discover the Powerful Features of Explorant.'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center gap-6'>
         {contents.map((content, i) => {
           return (
             <SectionBox
               key={i}
               title={content.title}
-              img={content.img}
+              icon={content.icon}
               desc={content.desc}
               features={content.features}
             />
@@ -70,25 +65,19 @@ export const Pricing = () => {
 
 const SectionBox: React.FC<BoxProps> = (props) => {
   return (
-    <div className='bg-secondary p-6 border border-secondary rounded-lg shadow-lg'>
-      <div className='flex items-center gap-4'>
-        <img src={props.img} alt={`Logo ${props.title}`} />
+    <div className='bg-secondary p-6 pb-4 border border-gray-600 rounded-lg shadow-lg'>
+      <div className='flex items-center gap-2'>
+        <div className='text-2xl mb-0.5' dangerouslySetInnerHTML={{ __html: props.icon }} />
         <div className='text-lg font-semibold text-white'>{props.title}</div>
       </div>
       <div className='py-4'>{props.desc}</div>
       <ul className='border-t border-gray-700 py-4 space-y-2'>
-        {props.features.map((feature, i) => {
-          return (
-            <li key={i} className='flex items-center gap-2'>
-              <IoCheckmarkCircleOutline className='w-5 h-5 text-primary' />
-              <span>{feature}</span>
-            </li>
-          )
-        })}
+        {props.features.map((feature, i) => (
+          <li key={i}>{feature}</li>
+        ))}
       </ul>
-      <button className='flex items-center gap-2 cursor-not-allowed px-4 py-2 bg-red text-secondary hover:text-white rounded w-full justify-center font-semibold'>
-        <span>GET IT</span>
-        <MdArrowForwardIos />
+      <button className='cursor-not-allowed px-4 py-2 bg-red text-secondary hover:text-white rounded w-full font-semibold'>
+        GET IT
       </button>
     </div>
   )

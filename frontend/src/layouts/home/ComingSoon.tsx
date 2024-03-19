@@ -7,51 +7,49 @@ interface BoxProps {
 
 const contents: Array<BoxProps> = [
   {
-    title: 'Gun Buddies',
-    img: 'https://explorant.space/static/media/teaser2b.94cd1416.png',
+    title: 'Account Folders',
+    img: '/img/folder.png',
   },
   {
-    title: 'Unlocked Agents',
-    img: 'https://explorant.space/static/media/teaser2b.94cd1416.png',
+    title: 'Public Profiles',
+    img: '/img/public.png',
   },
   {
-    title: 'Skin Variants',
-    img: 'https://explorant.space/static/media/teaser2b.94cd1416.png',
+    title: 'Schedule Messages',
+    img: '/img/schedule.png',
   },
   {
-    title: 'Match History',
-    img: 'https://explorant.space/static/media/teaser2b.94cd1416.png',
+    title: 'Public Profiles',
+    img: '/img/public.png',
+  },
+  {
+    title: 'Schedule Messages',
+    img: '/img/schedule.png',
   },
   {
     title: 'Account Folders',
-    img: 'https://explorant.space/static/media/teaser2b.94cd1416.png',
-  },
-  {
-    title: 'Account Folders',
-    img: 'https://explorant.space/static/media/teaser2b.94cd1416.png',
+    img: '/img/folder.png',
   },
 ]
 
 export const ComingSoon = () => {
   return (
-    <Section
-      title='Coming Soon'
-      desc='Unlock the Future of Valorant Exploration: Exciting New Features Coming Soon!.'
-    >
-      <div className='grid justify-between grid-cols-3 gap-8'>
+    <Section title='Coming Soon' desc='Exciting New Features Coming Soon!.'>
+      <div className='grid justify-between grid-cols-2 md:grid-cols-3 gap-8'>
         {contents.map((content, i) => {
-          return <Box key={i} title={content.title} img={content.img} />
+          return (
+            <div key={i} className='flex justify-center items-center flex-col'>
+              <img
+                loading='lazy'
+                src={content.img}
+                className='w-32 h-32 sm:w-40 sm:h-40 grayscale'
+                alt={`Image ${content.title}`}
+              />
+              <div className='md:text-lg text-center'>{content.title}</div>
+            </div>
+          )
         })}
       </div>
     </Section>
-  )
-}
-
-const Box: React.FC<BoxProps> = (props) => {
-  return (
-    <div className='flex justify-center items-center flex-col'>
-      <img src={props.img} alt={`Image ${props.title}`} />
-      <span className='text-lg'>{props.title}</span>
-    </div>
   )
 }

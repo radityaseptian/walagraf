@@ -1,6 +1,5 @@
 import { Wrapper } from '@/components'
 import { useNavigate } from 'react-router-dom'
-import { MdArrowForwardIos } from 'react-icons/md'
 import { useForm, useUser } from '../../context'
 
 export const Hero = () => {
@@ -16,26 +15,25 @@ export const Hero = () => {
   return (
     <section className='py-8'>
       <Wrapper>
-        <div className='flex items-center gap-8'>
-          <div className='w-[26rem] space-y-5'>
-            <h1 className='text-5xl tracking-widest py-4 font-valorant text-primary'>Walagraf</h1>
-            <div>Explore and showcase your Valorant Account with Explorant</div>
+        <div className='flex items-center flex-col lg:flex-row gap-8'>
+          <div className='md:w-[40rem] lg:w-[26rem] space-y-5'>
+            <h1 className='text-4xl md:text-5xl tracking-widest py-4 font-valorant text-primary'>Walagraf</h1>
+            <div>Explore and showcase your Whatsapp and Telegram Accounts with Walagraf</div>
             <div>
-              The ultimate platform for managing Valorant account, viewing stats, inventory and
-              store, and sharing with friends.
+              The ultimate platform for managing Whatsapp and Telegram accounts, sending message,
+              update profile, and sharing with friends.
             </div>
             <div>EXPLORE NOW !!</div>
             <button
               onClick={handleStartedButton}
-              className='px-8 py-3.5 bg-red hover:text-white font-semibold rounded flex items-center gap-1'
+              className='px-8 py-3.5 bg-red hover:text-white font-semibold rounded'
             >
-              <span>GET STARTED</span>
-              <MdArrowForwardIos />
+              GET STARTED
             </button>
           </div>
-          <div className='w-'>
+          <div className='md:p-10 lg:p-0'>
             <img
-              src='https://explorant.space/static/media/homefirst6.2151a754.png'
+              src='/img/profile.png?url'
               alt='Hero Banner'
             />
           </div>

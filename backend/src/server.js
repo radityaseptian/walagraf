@@ -25,4 +25,5 @@ app.use(routes)
 
 connectToMongoDB()
 initSocket(server)
+
 server.listen(port, () => console.log('Running in port ' + port))

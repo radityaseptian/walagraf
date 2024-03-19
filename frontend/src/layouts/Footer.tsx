@@ -10,8 +10,8 @@ export const Footer = () => {
             WALAGRAF
           </div>
           <div className='py-4'>
-            The ultimate platform for managing Valorant account, viewing stats,
-            inventory and store, and sharing with friends.
+            The ultimate platform for managing Whatsapp & Telegram account, sending message, update
+            profile, and sharing with friends.
           </div>
           <div className='flex items-center gap-4 justify-center'>
             <a

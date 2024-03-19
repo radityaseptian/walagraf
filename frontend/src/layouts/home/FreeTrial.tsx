@@ -15,7 +15,7 @@ export const FreeTrial = () => {
   return (
     <Section
       title='Free trial'
-      desc='Want to easily manage and display your Whatsapp and Telegram account and message schedule to your friends?
+      desc='Want to easily manage and display your Whatsapp and Telegram account and conversations to your friends?
       Look no further than Walagraf'
     >
       <div className='text-center'>

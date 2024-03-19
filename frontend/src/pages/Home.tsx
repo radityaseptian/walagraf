@@ -1,14 +1,4 @@
-import {
-  Navbar,
-  Hero,
-  Carousel,
-  Feature,
-  ComingSoon,
-  Pricing,
-  FreeTrial,
-  Footer,
-} from '@/layouts'
-import { Section } from '@/components'
+import { Navbar, Hero, Carousel, Feature, ComingSoon, Pricing, FreeTrial, Footer } from '@/layouts'
 
 export const Home = () => {
   return (
