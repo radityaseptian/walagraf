@@ -9,7 +9,7 @@
 }
 
 * {
-  scrollbar-width: auto;
+  scrollbar-width: thin;
   scrollbar-color: #374151 #1f2937;
 }
 

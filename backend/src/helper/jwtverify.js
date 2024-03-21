@@ -1,4 +1,4 @@
-const { User } = require('../databases/models/index.js')
+const { User } = require('../databases/models')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 

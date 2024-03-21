@@ -3,9 +3,10 @@ import { Footer } from '@/layouts'
 import { CiMenuKebab } from 'react-icons/ci'
 import { FaTelegram, FaWhatsapp, FaTrash } from 'react-icons/fa'
 import { useUser } from '../../context'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
+import { Navbar } from '@/layouts'
 import {
   Menu,
   MenuHandler,
@@ -19,13 +20,6 @@ import {
   Typography,
 } from '@material-tailwind/react'
 import fakeQr from '/img/qr.jpg?url'
-
-const instances = [
-  { id: '111b4405-8556-4373-a885-ac591a2e5756', name: '(fikri) Fikriansyah', type: 'whatsapp' },
-  { id: '111b4405-8556-4373-a885-iiad82had22y', name: 'Sansudin jaddab', type: 'telegram' },
-  { id: '111b4405-8556-4373-a885-77272tdh2ywy', name: '(saiful) sifaul qulub', type: 'whatsapp' },
-  { id: '111b4405-8556-4373-a885-iia72ga26g2g', name: 'mahmudin', type: 'telegram' },
-]
 
 const Base = () => {
   const [filter, setFilter] = useState('all')
@@ -42,10 +36,6 @@ const Base = () => {
   const [dialog, setDialog] = useState(initDialogState)
 
   const [user, setUser] = useUser()
-
-  useEffect(() => {
-    setUser({ ...user, instances })
-  }, [])
 
   const handleRemoveInstance = (id) => {
     try {
@@ -82,6 +72,7 @@ const Base = () => {
 
   return (
     <>
+      <Navbar />
       <div className='py-8'>
         <Wrapper>
           <div>
@@ -114,7 +105,7 @@ const Base = () => {
                     </Typography>
                   </DialogHeader>
                   <DialogBody divider className='grid place-items-center gap-4'>
-                      <svg
+                    <svg
                       viewBox='0 0 40 40'
                       fill='none'
                       className='h-16 w-16'

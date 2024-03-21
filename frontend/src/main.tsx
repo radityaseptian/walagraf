@@ -7,6 +7,7 @@ import axios from 'axios'
 import UserProvider from './context/User'
 import FormProvider from './context/Form'
 import { ThemeProvider } from '@material-tailwind/react'
+import Helmet from './components/Helmet.tsx'
 
 axios.defaults.validateStatus = () => true
 axios.defaults.withCredentials = true
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThemeProvider>
       <FormProvider>
         <UserProvider>
-          <Routes />
+          <Helmet>
+            <Routes />
+          </Helmet>
         </UserProvider>
       </FormProvider>
     </ThemeProvider>

@@ -45,7 +45,7 @@ const contents: Array<BoxProps> = [
 
 export const Pricing = () => {
   return (
-    <Section title='Pricing' desc='Discover the Powerful Features of Explorant.'>
+    <Section title='Pricing' desc='Discover the Powerful Features of Walagraf.'>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center gap-6'>
         {contents.map((content, i) => {
           return (

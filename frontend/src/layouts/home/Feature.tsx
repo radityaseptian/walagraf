@@ -14,7 +14,7 @@ const contents: Array<SectionBoxProps> = [
     title: 'Account Details:',
     img: '/img/tele.png',
     desc1:
-      'Access and view your complete Valorant account information, including your username, rank, region, and in-game statistics. Stay informed about your progress and performance ',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sint quis, eos exercitationem veniam earum assumenda quam, velit voluptatibus hic ut fugiat. Voluptatem veritatis debitis maiores delectus, in sunt iste.',
     desc2: '',
     reverse: true,
   },
@@ -22,27 +22,27 @@ const contents: Array<SectionBoxProps> = [
     title: 'Conversations With Friends:',
     img: '/img/conversation.png',
     desc1:
-      'Access and view your complete Valorant account information, including your username, rank, region, and in-game statistics. Stay informed about your progress and performance ',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sint quis, eos exercitationem veniam earum assumenda quam, velit voluptatibus hic ut fugiat. Voluptatem veritatis debitis maiores delectus, in sunt iste.',
     desc2:
-      'Gain a comprehensive overview of your Valorant account, including your current rank and any account bans. Stay informed about your progress and performance, track your rank advancements, and take note of any penalties or restrictions imposed on your account.',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sint quis, eos exercitationem veniam earum assumenda quam, velit voluptatibus hic ut fugiat. Voluptatem veritatis debitis maiores delectus, in sunt iste.',
     reverse: false,
   },
   {
     title: 'Manage Profile:',
     img: '/img/profile.png',
     desc1:
-      'Access and view your complete Valorant account information, including your username, rank, region, and in-game statistics. Stay informed about your progress and performance ',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sint quis, eos exercitationem veniam earum assumenda quam, velit voluptatibus hic ut fugiat. Voluptatem veritatis debitis maiores delectus, in sunt iste.',
     desc2:
-      'Gain a comprehensive overview of your Valorant account, including your current rank and any account bans. Stay informed about your progress and performance, track your rank advancements, and take note of any penalties or restrictions imposed on your account.',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sint quis, eos exercitationem veniam earum assumenda quam, velit voluptatibus hic ut fugiat. Voluptatem veritatis debitis maiores delectus, in sunt iste.',
     reverse: true,
   },
   {
     title: 'Generate Stickers:',
     img: '/img/sticker.png',
     desc1:
-      'Access and view your complete Valorant account information, including your username, rank, region, and in-game statistics. Stay informed about your progress and performance ',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sint quis, eos exercitationem veniam earum assumenda quam, velit voluptatibus hic ut fugiat. Voluptatem veritatis debitis maiores delectus, in sunt iste.',
     desc2:
-      'Gain a comprehensive overview of your Valorant account, including your current rank and any account bans. Stay informed about your progress and performance, track your rank advancements, and take note of any penalties or restrictions imposed on your account.',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sint quis, eos exercitationem veniam earum assumenda quam, velit voluptatibus hic ut fugiat. Voluptatem veritatis debitis maiores delectus, in sunt iste.',
     reverse: false,
   },
 ]

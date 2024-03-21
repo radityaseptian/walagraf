@@ -1,5 +1,5 @@
 const { User } = require('../databases/models/index.js')
-const { jwtVerify } = require('../helper/jwtverify.js')
+const jwtVerify = require('../helper/jwtverify.js')
 
 async function isAuthUser(req, res, next) {
   try {
