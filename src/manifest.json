@@ -1,0 +1,150 @@
+{
+  "manifest_version": 2,
+  "name": "Firefox Multi-Account Containers",
+  "version": "8.2.0",
+  "incognito": "not_allowed",
+  "description": "__MSG_extensionDescription__",
+  "icons": {
+    "48": "img/multiaccountcontainer-16.svg",
+    "96": "img/multiaccountcontainer-16.svg"
+  },
+  "homepage_url": "https://github.com/mozilla/multi-account-containers#readme",
+  "permissions": [
+    "<all_urls>",
+    "activeTab",
+    "cookies",
+    "contextMenus",
+    "contextualIdentities",
+    "history",
+    "idle",
+    "management",
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "webRequestBlocking",
+    "webRequest",
+    "alarms"
+  ],
+  "optional_permissions": ["bookmarks", "browsingData", "nativeMessaging", "proxy"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@testpilot-containers",
+      "strict_min_version": "91.1.0"
+    }
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Period",
+        "mac": "MacCtrl+Period"
+      },
+      "description": "__MSG_openContainerPanel__"
+    },
+    "sort_tabs": {
+      "suggested_key": {
+        "default": "Ctrl+Comma",
+        "mac": "MacCtrl+Comma"
+      },
+      "description": "__MSG_sortTabsByContainer__"
+    },
+    "open_container_0": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_1": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_2": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+3"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_3": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+4"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_4": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+5"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_5": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+6"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_6": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+7"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_7": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+8"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_8": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+9"
+      },
+      "description": "__MSG_containerShortcut__"
+    },
+    "open_container_9": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+0"
+      },
+      "description": "__MSG_containerShortcut__"
+    }
+  },
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "img/multiaccountcontainer-16.svg",
+    "default_title": "Firefox Multi-Account Containers",
+    "default_popup": "popup.html",
+    "default_area": "navbar",
+    "theme_icons": [
+      {
+        "light": "img/multiaccountcontainer-16.svg",
+        "dark": "img/multiaccountcontainer-16.svg",
+        "size": 32
+      }
+    ]
+  },
+  "page_action": {
+    "browser_style": true,
+    "default_icon": "img/container-openin-16.svg",
+    "default_title": "__MSG_alwaysOpenSiteInContainer__",
+    "default_popup": "pageActionPopup.html",
+    "pinned": false,
+    "show_matches": ["*://*/*"]
+  },
+  "background": {
+    "page": "js/background/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content-script.js"],
+      "css": ["css/content.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "default_locale": "en",
+  "web_accessible_resources": ["/img/multiaccountcontainer-16.svg"],
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  }
+}

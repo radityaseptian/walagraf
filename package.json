@@ -1,0 +1,54 @@
+{
+  "name": "testpilot-containers",
+  "title": "Multi-Account Containers",
+  "description": "Containers helps you keep all the parts of your online life contained in different tabs. Custom labels and color-coded tabs help keep different activities — like online shopping, travel planning, or checking work email — separate.",
+  "version": "8.2.0",
+  "author": "Andrea Marchesini, Luke Crouch, Lesley Norton, Kendall Werts, Maxx Crawford, Jonathan Kingston",
+  "bugs": {
+    "url": "https://github.com/mozilla/multi-account-containers/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "addons-linter": "^5.28.0",
+    "ajv": "^6.6.3",
+    "chai": "^4.2.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-no-unsanitized": "^4.0.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "htmllint-cli": "0.0.7",
+    "json": ">=10.0.0",
+    "mocha": "^10.1.0",
+    "npm-run-all": "^4.0.0",
+    "nyc": "^15.0.0",
+    "sinon": "^7.5.0",
+    "sinon-chai": "^3.3.0",
+    "stylelint": "^13.5.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.0.0",
+    "web-ext": "^7.5.0",
+    "webextensions-jsdom": "^1.2.1"
+  },
+  "homepage": "https://github.com/mozilla/multi-account-containers#readme",
+  "license": "MPL-2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mozilla/multi-account-containers.git"
+  },
+  "scripts": {
+    "build": "web-ext build -s src/",
+    "dev": "npm run remove-locales-github && web-ext run --firefox --verbose -s src/",
+    "lint": "npm-run-all lint:*",
+    "lint:addon": "./bin/addons-linter.sh",
+    "lint:css": "stylelint src/css/*.css",
+    "lint:html": "htmllint *.html",
+    "lint:js": "eslint .",
+    "package": "rm -rf src/web-ext-artifacts && npm run build && mv src/web-ext-artifacts/firefox_multi-account_containers-*.zip addon.xpi",
+    "restore-locales-github": "cd src/_locales && git restore .github/",
+    "remove-locales-github": "rm -rf src/_locales/.github",
+    "test": "npm run lint && npm run coverage",
+    "test:once": "mocha test/**/*.test.js",
+    "test:watch": "npm run test:once -- --watch",
+    "coverage": "nyc --reporter=html --reporter=text mocha test/**/*.test.js --timeout 60000"
+  }
+}
