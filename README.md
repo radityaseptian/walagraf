@@ -55,7 +55,7 @@ To modify the code you don't need to know all the project structure and what the
 
 ## Tips
 
-When modifying code from `/src/lib/*` you only need to refresh the browser tab, unlike when modifying code from `/src/js/\*` you need to restart the extension in the `about:debugging#/runtime/this-firefox` settings and click the "Reload" button.
+When modifying code from `/src/lib/*` you only need to refresh the browser tab, unlike when modifying code from `/src/js/*` you need to restart the extension in the `about:debugging#/runtime/this-firefox` settings and click the "Reload" button.
 
 ## Contact Me
 
